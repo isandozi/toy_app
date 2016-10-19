@@ -1,29 +1,53 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Microposts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @microposts.each do |micropost| %>
-      <tr>
-        <td><%= micropost.content %></td>
-        <td><%= micropost.user_id %></td>
-        <td><%= link_to 'Show', micropost %></td>
-        <td><%= link_to 'Edit', edit_micropost_path(micropost) %></td>
-        <td><%= link_to 'Destroy', micropost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Micropost', new_micropost_path %>
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <style>
+              body{background-color: #B6B8BA;}
+            </style>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script>
+            /*function that executes when page is fully loaded */
+            $(document).ready(
+                function()
+                {
+                    $('img[id^="imran"]').width(200).height(200);
+                }
+                );
+            </script>
+        </head>
+        <body>
+            <div id="main">
+                <article>
+                <h2>My Journey</h2>
+                <p><img src= "imran.jpg" alt= "Imran Sandozi" id="imran">Hi my name is Imran Sandozi and this is my journey how I became passionate about design. Design is one of the many forms of development in the major sector that is Information Technology. Its main focus is to "connect" a user with a "product." It is my goal to provide this experience to a user to become as seamless as possible.
+                </p>
+                <p>
+                    Growing up, I can always remember trying to figure out how things were working. With the arrival of technological devices such as PCs, Laptops, Smart Phones, and Tablets my curiosity soared.
+                </p>
+                <p>
+                    Away from the classroom, the sector that is Information Technology has had an everlasting, satisfying part of my personality. I find it very rare not to have at least my tablet to experience some new code. Whether it be debugging a program I am writing in JavaScript or learning new stacks for development, I was lucky early in my journey to learn the importance of innovation and design.
+                </p>
+                <h2>Who I Am</h2>
+                <p>
+                    From the beginning, I am and always have been an eager person. I may ask an unlimited number of questions to find how things work or to understand how things work. To create an everlasting impact, there needs to be understanding of what we are creating, how they work, and the most efficient way to perform action.
+                </p>
+                <p>
+                    I enjoy learning new technologies. Whether it be how it works or how it can be better, I am devoted to put the two together, helping others around me, and becoming extremely successful through my work.
+                </p>
+                <h2>What I Believe</h2>
+                <p>Designing solutions to what has been given to me has been rewarding yet satisfying. However, I feel I was put in this world to help others with the knowledge and skills I have been blessed with. I am devoted to help others conquer their tasks ranging from a miniscule goal to an extraordinary level revolutionizing our industry. I have found myself most effective when communicating with others regarding how to make their day to day easier for their family. If we are able to make a difference in one person's life for the better not only do we advance, but the world advances.
+                </p>
+                <h3>
+                    Let's do something great.
+                </h3>
+                <h1>Imran Sandozi</h1>
+                <hr>
+                <h2>References</h2>
+                <p class="bold">
+                    "Imran performed exceedingly well in web design and incorporates visual design and programming principles.
+On a few occasions, he came up with excellent questions leading to reflection and clarification. With a similar effort to other endeavors, he will do extremely well."<br><br>-Joseph Mendelsohn, Professional Lecturer, DePaul University</p><br><br>
+                </article>
+            </div>
+    </body>
+    </html>

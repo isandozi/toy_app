@@ -1,3 +1,33 @@
 // Place all the styles related to the Microposts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+p{font-family: lucida sans; font-size: 18px; line-height: 20px; margin-left: 40px; color:#170146; float: right;}
+
+.bold{font-weight: bold;}
+
+h3{font-family: lucida sans; font-size: 18px; line-height: 20px; margin-left: 40px; color: #170146;}
+
+hr{background-color: #AF0408; height: 1px; border: 0;}
+
+img{float: left; padding-right: 25px;}
+
+a{text-decoration: none; font-size: 24px; font-family: lucida sans; padding: 10px; line-height: 36px; font-weight:bold;}
+
+a:link{color:#170146;}
+
+a:visited{color:#170146;}
+
+a:hover{color:white; background-color: #AF0408; border-width: 1px; border-style: solid; border-color: #AF0408; border-radius: 10px;}
+
+a:active{color:white;background-color: black; text-decoration: none;}
+
+body{background-color: #B6B8BA;}
+
+div#main {position: static;width: 800px; height: 2200px;
+        margin-left: auto; margin-right: auto; overflow: auto;}
+
+article{position: static;width: 750px; height: 2000px; float: left; overflow: hidden; padding-left: 25px; padding-right: 25px; text-align: justify;}
+
+h1{color:#AF0408; letter-spacing:5px; text-shadow: 8px 8px 20px #000000; font-size: 40px; font-family: Edwardian Script ITC; text-align: left;}
+
+h2{color: #AF0408; font-size: 50px; font-family: Edwardian Script ITC; text-align: center;}

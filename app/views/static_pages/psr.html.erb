@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>
+                Paper Scissors Rock
+            </title>
+            <style>
+                body {background-color: black;}
+                
+                div#main {position: static;
+                          background-color: gray;
+                          min-width: 200px;
+                          width:1000px;
+                          height: 700px;
+                          padding-left: 20px;
+                          padding-right: 20px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          text-align: center;
+                          font-size: 24px;
+                          font-weight: bold;}
+                
+                div#howtoplay {position: relative;
+                            width: 200px;
+                            height: 100px;
+                            top: 50px;
+                            left: 200px;
+                            text-align: center;
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-left: 1em;
+                            float: left;}
+                            
+                div#computer{position: relative;
+                             width: 200px;
+                             height: 200px;
+                             top: 50px;
+                             right: 100px;
+                             text-align: center;
+                             font-size: 18px;
+                             font-weight: bold;
+                             float: right;
+                             margin-left: 1em;}
+                             
+                div#player{position: relative;
+                              width: 200px;
+                              height: 200px;
+                              top: 50px;
+                              left: 100px;
+                              text-align: center;
+                              font-size: 18px;
+                              font-weight: bold;
+                              float: left;
+                              margin-left: 1em;}
+                          
+                          p{word-spacing: 30px;}
+                          .divider{width: 30px; height: auto; display: inline-block;}
+            </style>
+            <script>
+            /*function that executes when page is fully loaded */
+            $(document).ready(
+                function()
+                {
+                    $('img').width(180).height(180);
+                    $('div[id^="howtoplay"]').hide();
+                    $('#paper').show();
+                    $('#scissors').show();
+                    $('#rock').show();
+                });
+            </script>
+        </head>
+        <body>
+            <div id = "main">
+                <h1> Paper Scissors Rock</h1>
+                <img src="question.png" alt="Question" id="playerchoice">
+                vs
+                <img src="question.png" alt="Question" id="computerchoice">
+                =
+                <span id = "winner">
+                    <img src="question.png" alt="Question" id="winnerchoice">
+                </span>
+                <br><br><br>
+                <div style="text-align: center">
+                    <input type="button" id ="paper" value="Paper" onClick = "rollPaper();" >
+                    <div class="divider"></div>
+                    <input type="button" id ="scissors" value="Scissors" onClick = "rollScissors();">
+                    <div class="divider"></div>
+                    <input type="button" id ="rock" value="Rock" onClick = "rollRock();">
+                    <h3 id="messageText">
+                        
+                    </h3>
+                </div>
+                
+                <p>
+                    Paper:
+                        <span id="totalPaperText">
+                            0
+                        </span>
+                    Scissors:
+                        <span id="totalScissorsText">
+                            0
+                        </span>
+                    Rock:
+                        <span id="totalRockText">
+                            0
+                        </span>
+                    Ties:
+                        <span id="totalTiesText">
+                            0
+                        </span>
+                </p>
+                <input type = "button" id="howto" value = "How To Play" onclick = "$('#howtoplay').fadeIn(5000).fadeOut(5000);">
+                <div id="player">
+                    <h3 id = "playername">
+                        
+                    </h3>
+                    <h3 id = "playerscore">
+                        0
+                    </h3>
+                </div>
+                <div id="howtoplay">
+                    <h3>Rock Smash Scissors<br>
+                        Paper Cover Rock<br>
+                        Scissors Cut Paper
+                        First Player to 3 Wins
+                    </h3>
+                </div>
+                <div id="computer">
+                    <h3>
+                        Computer
+                    </h3>
+                    <h3 id="computerscore">
+                        0
+                    </h3>    
+                </div>
+                <br>
+            </div>
+            <strong><center><h1><a href="../index.html">Home</a></h1></center></strong>
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        </body>
+        <script>
+                var player = prompt("Please enter your name", "Player");
+                if (player != null)
+                {
+                    document.getElementById("playername").innerHTML = player;
+                }
+                else
+                  document.getElementById("playername").innerHTML = "Player";
+                  
+                // declare global variable for totalRock
+                var totalRock = new Number;
+                
+                // declare global variable for totalPaper
+                var totalPaper = new Number;
+                
+                // declare global variable for totalScissors
+                var totalScissors = new Number;
+                
+                // declare global variable for totalTies
+                var totalTies = new Number;
+                
+                //declare global variable for totalPlayer
+                var totalPlayer = new Number;
+                
+                //declare global variable for totalComputer
+                var totalComputer = new Number;
+                
+                //function for rollRock()
+                function rollRock() {
+                    
+                    //change the src of playerchoice
+                    document.getElementById("playerchoice").src = "2.jpg";
+                    
+                    //create a variable for computer selection
+                    var compselect = Math.floor(Math.random() * 3) + 1;
+                    
+                    //change the src of computerchoice
+                    document.getElementById("computerchoice").src = compselect + ".jpg";
+                    
+                    //add 1 to totalRock
+                    totalRock++;
+                    
+                    //change totalRockText to value of totalRock
+                    document.getElementById("totalRockText").innerHTML = totalRock;
+                    
+                    //add 1 to totalTies every time there is a tie
+                    if ("2.jpg" == compselect + ".jpg") {
+                        totalTies++;
+                        document.getElementById("totalTiesText").innerHTML = totalTies;
+                        document.getElementById("messageText").innerHTML = "Tie. Try Again.";
+                        document.getElementById("winnerchoice").src = "2.jpg";
+                        document.body.style.backgroundColor = "yellow";
+                    }
+                    else if ("1.jpg" == compselect + ".jpg") {
+                        totalComputer++;
+                        document.getElementById("computerscore").innerHTML = totalComputer;
+                        document.getElementById("messageText").innerHTML = "You Lose. Play Again.";
+                        document.getElementById("winnerchoice").src = "1.jpg";
+                        document.body.style.backgroundColor = "red";
+                        if (totalComputer > 2) {
+                            $('#paper').hide();
+                            $('#scissors').hide();
+                            $('#rock').hide();
+                            document.getElementById("messageText").innerHTML = "You Lost. Better Luck Next Time.";
+                            document.body.style.backgroundColor = "red";
+                            exit;
+                        }
+                    }
+                    else{
+                        totalPlayer++;
+                        document.getElementById("playerscore").innerHTML = totalPlayer;
+                        document.getElementById("messageText").innerHTML = "You Win. Play Again.";
+                        document.getElementById("winnerchoice").src = "2.jpg";
+                        document.body.style.backgroundColor = "green";
+                        if (totalPlayer > 2) {
+                            $('#paper').hide();
+                            $('#scissors').hide();
+                            $('#rock').hide();
+                            document.getElementById("messageText").innerHTML = "You won. Congratulations!";
+                            document.body.style.backgroundColor = "green";
+                            exit;
+                        }
+                    }
+                }
+                
+                // function for rollScissors()
+                function rollScissors() {
+                    //change the src of playerchoice
+                    document.getElementById("playerchoice").src = "3.jpg";
+                    
+                    //create a variable for computer selection
+                    var compselect = Math.floor(Math.random() * 3) + 1;
+                    //change the src of computerchoice
+                    document.getElementById("computerchoice").src = compselect + ".jpg";
+                    
+                    //add 1 to totalScissors
+                    totalScissors++;
+                    
+                    //change totalScissorsText to value of totalScissors
+                    document.getElementById("totalScissorsText").innerHTML = totalScissors;
+                    
+                    //add 1 to totalTies every time there is a tie
+                    if ("3.jpg" == compselect + ".jpg") {
+                        totalTies++;
+                        document.getElementById("totalTiesText").innerHTML = totalTies;
+                        document.getElementById("messageText").innerHTML = "Tie. Try Again.";
+                        document.getElementById("winnerchoice").src = "3.jpg";
+                        document.body.style.backgroundColor = "yellow";
+                    }
+                    else if ("2.jpg" == compselect + ".jpg") {
+                        totalComputer++;
+                        document.getElementById("computerscore").innerHTML = totalComputer;
+                        document.getElementById("messageText").innerHTML = "You Lose. Play Again";
+                        document.getElementById("winnerchoice").src = "2.jpg";
+                        document.body.style.backgroundColor = "red";
+                        if (totalComputer > 2) {
+                            document.getElementById("messageText").innerHTML = "You Lost. Better Luck Next Time.";
+                            $('#paper').hide();
+                            $('#scissors').hide();
+                            $('#rock').hide();
+                            document.body.style.backgroundColor = "red";
+                            exit;
+                        }
+                    }
+                    else{
+                        totalPlayer++;
+                        document.getElementById("playerscore").innerHTML = totalPlayer;
+                        document.getElementById("messageText").innerHTML = "You Win. Play Again.";
+                        document.getElementById("winnerchoice").src = "3.jpg";
+                        document.body.style.backgroundColor = "green";
+                        if (totalPlayer > 2) {
+                            $('#paper').hide();
+                            $('#scissors').hide();
+                            $('#rock').hide();
+                            document.getElementById("messageText").innerHTML = "You won. Congratulations!";
+                            document.body.style.backgroundColor = "green";
+                            exit;
+                        }
+                    }
+                }
+                    
+                // function for rollPaper()
+                function rollPaper() {
+                    
+                    //change the src of playerchoice
+                    document.getElementById("playerchoice").src = "1.jpg";
+                    
+                    //create a variable for computer selection
+                    var compselect = Math.floor(Math.random() * 3) + 1;
+                    //change the src of computerchoice
+                    document.getElementById("computerchoice").src = compselect + ".jpg";
+                    
+                    //add 1 to totalPaper
+                    totalPaper++;
+                    
+                    //change totalPaperText to value of totalPaper
+                    document.getElementById("totalPaperText").innerHTML = totalPaper;
+                    
+                    //add 1 to totalTies every time there is a tie
+                    if ("1.jpg" == compselect + ".jpg") {
+                        totalTies++;
+                        document.getElementById("totalTiesText").innerHTML = totalTies;
+                        document.getElementById("messageText").innerHTML = "Tie. Try Again.";
+                        document.getElementById("winnerchoice").src = "1.jpg";
+                        document.body.style.backgroundColor = "yellow";
+                    }
+                    else if ("2.jpg" == compselect + ".jpg") {
+                        totalPlayer++;
+                        document.getElementById("playerscore").innerHTML = totalPlayer;
+                        document.getElementById("messageText").innerHTML = "You Win. Play Again.";
+                        document.getElementById("winnerchoice").src = "1.jpg";
+                        document.body.style.backgroundColor = "green";
+                        if (totalPlayer > 2) {
+                            $('#paper').hide();
+                            $('#scissors').hide();
+                            $('#rock').hide();
+                            document.getElementById("messageText").innerHTML = "You won. Congratulations!";
+                            document.body.style.backgroundColor = "green";
+                            exit;
+                        }
+                    }
+                    else{
+                        totalComputer++;
+                        document.getElementById("computerscore").innerHTML = totalComputer;
+                        document.getElementById("messageText").innerHTML = "You Lose. Play Again.";
+                        document.getElementById("winnerchoice").src = "3.jpg";
+                        document.body.style.backgroundColor = "red";
+                        if (totalComputer > 2) {
+                            $('#paper').hide();
+                            $('#scissors').hide();
+                            $('#rock').hide();
+                            document.getElementById("messageText").innerHTML = "You Lost. Better Luck Next Time.";
+                            document.body.style.backgroundColor = "red";
+                            exit;
+                        }
+                    }
+                }  // end of function
+            </script>
+    </html>

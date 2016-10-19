@@ -1,26 +1,14 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  
-  def setup
-    @base_title = "Ruby on Rails Toy_App"
-  end
-  
-  test "should get home" do
-    get static_pages_home_url
+  test "should get Home" do
+    get static_pages_Home_url
     assert_response :success
-    assert_select "title", "Users | #{@base_title}"
   end
 
-  test "should get help" do
-    get static_pages_help_url
+  test "should get Help" do
+    get static_pages_Help_url
     assert_response :success
-    assert_select "title", "Microposts | #{@base_title}"
   end
 
-  test "should get about" do
-    get static_pages_about)url
-    assert_response :success
-    assert_select "title", "About | #{@base_title}"
-  end
 end

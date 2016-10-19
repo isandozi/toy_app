@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Application for Employment</title>
+            <style>
+                /*sets of page to lightpink */
+                body{background-color: lightpink;}
+                
+                /*div sections with declared values */
+                div#instructions_ssn {position: static;
+                                      width: 410px;
+                                      height: 100px;}
+                div#instructions_educa {position: static;
+                                        width: 410px;
+                                        height: 100px;}
+                div#response {position: static;
+                              width: 350px;
+                              height: 135px;}
+                div#math_answer {position: static;
+                                 width: 410px;
+                                 height: 100px;}
+                
+                /*details for all H2s */
+                h2 {margin: 0px;
+                    color: red;}
+                .highlight {background-color: yellow; color: red;}
+                .emphasize {background-color: yellow; color: red; font-style: italic; font-weight: bold;}
+                
+            </style>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script>
+            /*function that executes when page is fully loaded */
+            $(document).ready(
+                function()
+                {
+                    $('img').width(15).height(15);
+                    $('div[id^="instructions"]').hide();
+                    $('#response').css({'font-family':'Arial','text-align':'center','background-color':'silver'});
+                    $('div').hide();
+                }
+                );
+                alert("Please enable speakers for full experience.");
+                
+                /* function that shows/hide div instructions_ssn */
+                function toggleSSN(instructions_ssn) {
+                    $('#instructions_ssn').toggle();
+                }
+                /* function that shows/hide div instructions_educa */
+                function toggleEduca(instructions_educa) {
+                    $('#instructions_educa').toggle();
+                }
+                /* function that shows a message when answering math question */
+                function toggleMath(math_answer) {
+                    $('#math_answer').show();
+                }
+                
+                
+                //make a function called calculateAnswer()
+                function calculateAnswer() {
+                    //make a variable for the answer entered
+                    var solution = parseFloat(document.getElementById("mathAnswer").value);
+                    var final = new String;
+
+                    if (isNaN(solution)) {
+                        final = "Please enter a numerical solution";
+                        /* plays the sound 'aww' */
+                        aww.play();
+                    }
+                    
+                    else if (solution == 10) {
+                        final = "Congrats! You qualify for any of the requested jobs!";
+                        /* plays the sound 'correct' */
+                        correct.play();
+                    }
+                    
+                    else if (solution == 6) {
+                        final = "Sorry, not chief flipper, but perhaps senior flipper. PS: Perhaps you should review order of operations.";
+                        /* plays the sound 'aww' */
+                        aww.play();
+                    }
+                    else
+                        final = "Close enough for burger flipper in training.";
+                        /* plays the sound 'wrong' */
+                        wrong.play();
+                
+                /* sets the string final in the paragraph with ID 'results' */
+                document.getElementById("results").innerHTML = final;
+                
+                /* shows the div response */
+                $('#response').show();
+                }
+                
+                /* create an array with colors 'red', 'blue', 'green', and 'yellow' */
+                var backgroundArray = new Array("red","blue","green","yellow");
+                
+                /* create a function that selects a random position within the array */
+                function random() {
+                    var randomNumber = Math.floor(Math.random() * backgroundArray.length);
+                    
+                    /* changes the background and text color based upon random number selected */
+                    if (randomNumber == 0) {
+                        document.getElementById("customText").style.color = "white";
+                        document.body.style.backgroundColor= "red";
+                    }
+                    else if (randomNumber == 1) {
+                        document.getElementById("customText").style.color = "white";
+                        document.body.style.backgroundColor = "blue";
+                    }
+                    else if (randomNumber == 2) {
+                        document.getElementById("customText").style.color = "white";
+                        document.body.style.backgroundColor = "green";
+                    }
+                    else {
+                        document.getElementById("customText").style.color = "black";
+                        document.body.style.backgroundColor = "yellow";
+                    }
+                }
+                /* create function that clears user entered data and resets background to default */
+                function clearEntries() {
+                    document.getElementById("customText").style.color = "black";
+                    document.body.style.backgroundColor = "lightpink";
+                    document.getElementById("personName").value = "";
+                    document.getElementById("personSocial").value = "";
+                    document.getElementById("mathAnswer").value = "";
+                }
+                </script>
+        </head>
+        <body id= "customText">
+            <audio id= "awwAnswer">
+                <source src = "aww.ogg" type = "audio/ogg">
+                <source src = "aww.mp3" type = "audio/mpeg">
+            </audio>
+            <audio id = "correctAnswer">
+                <source src = "correct.ogg" type = "audio/ogg">
+                <source src = "correct.mp3" type = "audio/mpeg">
+            </audio>
+            <audio id = "wrongAnswer">
+                <source src = "wrong.ogg" type = "audio/ogg">
+                <source src = "wrong.mp3" type = "audio/mpeg">
+            </audio>
+            <form>
+                <p>
+                    Name:
+                    <input type = "text" size = "10" id = "personName" value = "">
+                </p>
+                <p>
+                    Social Security Number:
+                    <input type = "text" size = "10" id = "personSocial" value = "">
+                    <sup><img src="info.png" alt = "Info" onclick = "toggleSSN(instructions_ssn)"></sup> 
+                </p>
+                <div id = "instructions_ssn">
+                    <p class="highlight">
+                        Please type your 9-digit social security number. Please do not include any characters other than a dash to separate digits.
+                    </p>
+                </div><!-- end of 'instructions_ssn' div -->
+                <p>
+                    Education Level:
+                    <select name= "education">
+                        <option value = "select">
+                            Please Select
+                        </option>
+                        <option value= "somehighschool">
+                            Some High School
+                        </option>
+                        <option value="completedhighschool">
+                            Completed High School
+                        </option>
+                        <option value="somecollege">
+                            Some College
+                        </option>
+                        <option value="completedcollege">
+                            Completed College
+                        </option>
+                        <option value="graduateschool">
+                            Graduate School
+                        </option>
+                    </select>
+                    <sup><img src="info.png" alt = "Info" onclick= "toggleEduca(instructions_educa)"></sup>
+                </p>
+                <div id = "instructions_educa">
+                    <p class="highlight">
+                        Please choose the highest level of education you have obtained.
+                    </p>
+                </div><!-- end of 'instructions_educa' div -->
+                <p>
+                    <strong>
+                        Applying For:
+                    </strong><br>
+                    <input type="radio" name="Position" value="junior">Junior Hamburger Flipper
+                    <br>
+                    <input type="radio" name="Position" value="senior" checked="checked">Senior Hamburger Flipper
+                    <br>
+                    <input type="radio" name="Position" value="chief">Chief Hamburger Flipper
+                    <br>
+                </p>
+                <p>
+                    <strong>Fitness Test:</strong> In order to determine whether or not you possess the proper qualifications for any of these jobs, please provide your solution to the following math problem: What is 6+12/3?
+                </p><br>
+                <input type = "text" size = "10" id = "mathAnswer" value = "" onfocus = "toggleMath(math_answer)">
+                <div id= "math_answer">
+                    <p class="emphasize">
+                        Don't cheat!!
+                    </p>
+                </div><!-- end of 'math_answer' div -->
+                
+                <p>Don't Like This Page? Click "Surprise Me" for other combinations!</p><br>
+                <input type="button" value = "Submit" onClick= "calculateAnswer();">
+                <input type="button" value= "Surprise Me" onClick = "random();">
+                <input type="button" value= "Start Over" onClick = "clearEntries();"
+            </form><br><br>
+            <div id="response">
+                <br>
+                <h2>How High Can you Go?</h2><br>
+                <p id = "results">
+                
+                </p>
+            </div> <!--end of reponse div -->
+            
+            <script>
+            var aww = document.getElementById("awwAnswer");
+                /* create function that plays sound 'aww' */
+                function playAww() {
+                    aww.play();
+                }
+                
+            var correct = document.getElementById("correctAnswer");
+            /* create function that plays sound 'correct' */
+            function playCorrect() {
+                correct.play();
+            }
+                
+            var wrong = document.getElementById("wrongAnswer");
+            /* create function that plays sound 'wrong' */
+            function playWrong() {
+                wrong.play();
+            }    
+            </script>
+            <strong><h1><a href="index.html">Home</a></h1></strong>
+        </body>
+    </html>

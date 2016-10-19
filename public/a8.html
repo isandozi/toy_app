@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>
+                Roll Dice!
+            </title>
+            <style>
+                body {background-color: darkgreen;}
+                
+                div#main {position: static;
+                          background-color: lightgreen;
+                          width:600px;
+                          padding-left: 20px;
+                          padding-right: 20px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          text-align: center;
+                          font-size: 24px;
+                          font-weight: bold;}
+            </style>
+        </head>
+        <body onLoad = "document.getElementById('button1').disabled =false";>
+            <script>
+                // declare global variable for totalRolls
+                var totalRolls = new Number;
+                
+                // declare global variable for totalSevens
+                var totalSevens = new Number;
+                
+                // declare global variable for totalDoubles
+                var totalDoubles = new Number;
+                
+                // function for rollDice()
+                function rollDice() {
+                    // create a variable for die1
+                    var die1 = Math.floor(Math.random() * 6) + 1;
+                    //change the src of die1image
+                    document.getElementById("die1image").src = die1 + ".png";
+                    
+                    //create a variable for die2
+                    var die2 = Math.floor(Math.random() * 6) + 1;
+                    //change the src of die2image
+                    document.getElementById("die2image").src = die2 + ".png";
+                    
+                    // displays the sum of the two dice
+                    var total = die1 + die2;
+                    document.getElementById("diceTotalText").innerHTML = total;
+                    
+                    // add 1 to totalRollsText
+                    totalRolls++;
+                    
+                    // change totalRollsText to value of totalRolls
+                    document.getElementById("totalRollsText").innerHTML = totalRolls;
+                    
+                    // add 1 to totalDoubles every time doubles are rolled
+                    if (die1 == die2) {
+                        totalDoubles++;
+                        document.getElementById("totalDoublesText").innerHTML = totalDoubles;
+                    }
+                    // dynamic text and background color
+                    // if you roll a 2
+                    if (total == 2) {
+                        document.getElementById("messageText").innerHTML = "You Lose!";
+                        document.getElementById("button1").disabled = true;
+                        document.body.style.backgroundColor = "red";
+                    }
+                    // else if you roll a 7
+                    else if (total == 7) {
+                        document.getElementById("messageText").innerHTML = "Lucky Number Seven!";
+                        totalSevens++;
+                        document.getElementById("totalSevensText").innerHTML = totalSevens;
+                    }
+                    // else if you roll an 11
+                    else if (total == 11) {
+                        document.getElementById("messageText").innerHTML = "So close...";
+                    }
+                    // else if you roll a 12
+                    else if (total == 12) {
+                        document.getElementById("messageText").innerHTML = "You Win!";
+                        document.getElementById("button1").disabled = true;
+                        document.body.style.backgroundColor = "yellow";
+                    }
+                    // everything else
+                    else {
+                        document.getElementById("messageText").innerHTML = "Try Again...";
+                    }
+                }  // end of function
+                
+            </script>
+            <div id = "main">
+                <h1> Roll the Dice</h1>
+                <img src="0.png" alt="die" id="die1image">
+                +
+                <img src="0.png" alt="die" id="die2image">
+                =
+                <span id = "diceTotalText">
+                    ???
+                </span>
+                <br>
+                <input type="button" id ="button1" value="Roll the Dice" onClick = "rollDice();">
+                <p id="messageText">
+                    &nbsp;
+                </p>
+                <p>
+                    Number of Total Rolls:
+                        <span id="totalRollsText">
+                            0
+                        </span>
+                </p>
+                <p>
+                    Number of Sevens Rolls:
+                        <span id="totalSevensText">
+                            0
+                        </span>
+                </p>
+                <p>
+                    Number of Doubles Rolled:
+                        <span id="totalDoublesText">
+                            0
+                        </span>
+                </p>
+                <br>
+            </div>
+            <strong><center><h1><a href="../index.html">Home</a></h1></center></strong>
+    </body>
+    </html>

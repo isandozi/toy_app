@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | ToyApp</title>
+    <title>Imran's Portfolio</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
   </head>
-
-  <body>
+  <body class = "container">
+    <div class = "page-header">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class= "active"><a href = "/">Home</a></li>
+        <li role="presentation"><a href="/microposts">About</a></li>
+        <li role"presentation"><a href="/static_pages/Help">Portfolio</a></li>
+      </ul>
+    </div>
     <%= yield %>
   </body>
-</html>
+</html> 
